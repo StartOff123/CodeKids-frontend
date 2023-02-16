@@ -1,0 +1,126 @@
+@import '../../styles/colors.scss';
+
+.studetns {
+    margin-top: 80px;
+}
+
+.studentsContent {
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleInfo {
+    h1 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: $mainColor;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 29px;
+        color: $mainColor;
+    }
+}
+
+
+.card {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+
+    h1 {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+        margin-top: 40px;
+        background: rgba($color: $menuBg, $alpha: .3);
+        font-size: 20px;
+        padding: 10px 0;
+        border-radius: 5px;
+        color: $menuBg;
+    }
+}
+
+.cardItem {
+    padding: 15px 20px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+    max-width: 360px;
+    min-width: 310px;
+    background: $white;
+    border: 1px solid #DEE7F0;
+    box-shadow: 1px 2px 8px 1px rgba(52, 91, 130, 0.25);
+    border-radius: 8px;
+}
+
+.top {
+    display: flex;
+
+    img {
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.infoInner {
+    margin-top: 20px;
+    
+    h2 {
+        font-size: 18px;
+        color: #4f7591;
+        margin-bottom: 10px;
+    }
+
+    p {
+        line-height: 20px;
+        font-size: 14px;
+        color: $mainColor;
+    }
+}
+
+.cardButtons {
+    display: flex;
+    justify-content: right;
+    border-bottom: 1px solid $mainColor;
+    padding-bottom: 10px;
+
+    div {
+        overflow: hidden;
+        border-radius: 5px;
+
+        svg {
+            padding: 5px;
+            cursor: pointer;
+            transition: all .15s;
+
+            &:hover {
+                background: rgba($color: #000, $alpha: .1);
+            }
+        }
+
+        img {
+            padding: 5px;
+            transition: all .15s;
+            cursor: pointer;
+
+            &:hover {
+                background: rgba($color: #000, $alpha: .1);
+            }
+        }
+    }
+
+}

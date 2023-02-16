@@ -1,0 +1,22 @@
+@import '../../styles/colors.scss';
+
+button {
+    background: #FBFCFC;
+    border: 1px solid #DEE7F0;
+    border-radius: 8px;
+    padding: 8px 11px;
+    font-weight: 700;
+    font-size: 16px;
+    color: $mainColor;
+    cursor: pointer;
+    transition: all .15s;
+    margin-left: 10px;
+
+    &:hover {
+        background: #fafafa;
+    }
+
+    &:active {
+        background: #ececec;
+    }
+}

@@ -1,0 +1,169 @@
+@import '../../styles/colors.scss';
+
+.form {
+    box-sizing: border-box;
+    padding: 15px 20px;
+    background: $white;
+    border: 1px solid #DEE7F0;
+    box-shadow: 1px 2px 8px 1px rgba(52, 91, 130, 0.25);
+    border-radius: 8px;
+}
+
+.form-header {
+    text-align: right;
+
+    svg {
+        color: $mainColor;
+        cursor: pointer;
+        transition: all .15s;
+
+        &:hover {
+            color: rgb(159, 0, 0);
+        }
+    }
+}
+
+.css-1nmdiq-menu {
+    user-select: none;
+}
+
+.form-logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 20px;
+
+    img {
+        margin-right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $logoColor;
+    }
+}
+
+.form-logo-title {
+    h2 {
+        color: $logoColor;
+        font-family: 'Itim';
+        font-weight: 400;
+        font-size: 26px;
+    }
+
+    p {
+        color: $mainColor;
+        font-weight: 700;
+        font-size: 16px;
+    }
+}
+
+.form-button {
+    margin-top: 20px;
+    background: #48A6CB;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 13px 32px;
+    font-weight: 700;
+    font-size: 16px;
+    color: $white;
+    cursor: pointer;
+    margin-left: 0;
+    transition: all .15s;
+
+    &:hover {
+        background: #319fca;
+    }
+
+    &:active {
+        background: #2b90b8;
+    }
+}
+
+.form-input {
+    margin-top: 20px;
+    color: $mainColor;
+
+    textarea {
+        font-family: "Lato", sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid #9a9a9a;
+        outline: 1px solid transparent;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        color: rgba($color: #000000, $alpha: .6);
+        resize: none;
+        overflow: hidden;
+        margin-top: 10px;
+        transition: all .15s;
+
+        &:focus {
+            outline: 1px solid $logoColor;
+        }
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.form-login {
+    width: 100%;
+}
+
+.form-name {
+    display: flex;
+
+    .MuiFormControl-root {
+        &:first-child {
+            margin-right: 5px;
+        }
+
+        &:last-child {
+            margin-left: 5px;
+        }
+    }
+}
+
+.form-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-studetn {
+    margin-top: 10px;
+}
+
+.form-settings-name {
+    text-align: right;
+    display: block;
+    margin-left: 10px;
+}
+
+.form-avatar {
+    width: 60px;
+    height: 60px;
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.popup-overlay {
+    background: rgba($color: #000, $alpha: .4);
+}

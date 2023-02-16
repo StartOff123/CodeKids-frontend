@@ -1,0 +1,31 @@
+.left {
+    position: relative;
+    height: 100%;
+}
+
+.right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all .2s;
+}
+
+.desktop {
+    padding: 25px 40px;
+    box-sizing: border-box;
+    max-width: 1170px;
+    margin:  0 auto;
+
+    span {
+        user-select: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 115px;
+        color: rgba($color: #39679433, $alpha: .2);
+        z-index: -1;
+    }
+}

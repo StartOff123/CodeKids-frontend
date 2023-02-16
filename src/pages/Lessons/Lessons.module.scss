@@ -1,0 +1,137 @@
+@import '../../styles/colors.scss';
+
+.lessons {
+    margin-top: 80px;
+}
+
+.lessonsContent {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleInfo {
+    h1 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: $mainColor;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 29px;
+        color: $mainColor;
+    }
+}
+
+.lessonsStatus {
+    position: relative;
+
+    h1 {
+        position: relative;
+        color: $mainColor;
+        font-size: 20px;
+        padding-bottom: 10px;   
+        margin-bottom: 20px;
+
+        &::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            bottom: 0;
+            background: $mainColor;
+            width: 100%;
+            height: 2px;
+        }
+    }
+
+    h5 {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+        margin-top: 40px;
+        background: rgba($color: $menuBg, $alpha: .3);
+        font-size: 20px;
+        padding: 10px 0;
+        border-radius: 5px;
+        color: $menuBg;
+    }
+}
+
+.lesson {
+    overflow: hidden;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    background: $white;
+    border: 1px solid #DEE7F0;
+    box-shadow: 1px 2px 8px 1px rgba(52, 91, 130, 0.25);
+    border-radius: 8px;
+
+    p {
+        color: $mainColor;
+    }
+
+    h4 {
+        color: $mainColor;
+        margin-top: 10px;
+    }
+
+    .buttonss {
+        float: right;
+    }
+}
+
+.buttonss {
+    button {
+        margin-left: 10px;
+
+        &:last-child {
+            &:hover {
+                color: #fff;
+                background: rgba($color: #4d0000, $alpha: .6);
+            }
+        }
+    }
+}
+
+.top {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+
+    h2 {
+        color: $mainColor;
+    }
+
+    h3 {
+        color: $mainColor;
+        font-weight: 400;
+    }
+}
+
+.helded {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    h1 {   
+        color: #30aa00;
+        margin: 0;
+        padding: 0;
+        margin-right: 5px;
+
+        &::after {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@import '../../styles/colors.scss';
+
+.menu {
+    background: $menuBg;
+    position: fixed;
+    width: 222px;
+    border-right: 1px solid rgba(27, 115, 150, 0.5);
+    height: 100vh;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all .4s;
+}
+
+.logo {
+    text-decoration: none;
+    padding: 20px 17px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+    color: $logoColor;
+    font-family: 'Itim';
+
+    h1 {
+        transition: all .2s;
+    }
+
+    img {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.managment {
+    background: $activeChapter;
+    color: $white;
+    border-width: 1px 0px;
+    border-style: solid;
+    border-color: $borderColor;
+    transition: all .2s;
+
+    h1 {
+        transition: all .2s;
+        font-size: 20px;
+    }
+}
+
+
+.menuItem {
+    background: $menuDarkBg;
+}
+
+.item {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12.5px 20px;
+    color: $white;
+    cursor: pointer;
+    transition: all .15s;
+    opacity: .4;
+
+    img {
+        width: 25px;
+        height: 25px;
+        filter: invert(1);
+        margin-right: 10px;
+        transition: all .2s;
+    }
+
+    h1 {
+        font-size: 14px;
+        font-weight: 400;
+        transition: all .2s;
+    }
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.active {
+    opacity: .9;
+}
