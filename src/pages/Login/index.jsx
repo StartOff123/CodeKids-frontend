@@ -9,12 +9,13 @@ import logo from '../../assets/logo.png'
 
 const Login = () => {
     const isAuth = useSelector(selectIsAuth)
+    const { error } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
-    const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            login: '',
-            password: '',
+            login: 'StartOff',
+            password: '12345678',
         }
     })
     
@@ -41,14 +42,15 @@ const Login = () => {
                         <p>Авторизация</p>
                     </div>
                 </div>
-                <Stack spacing={2} className={style.input}>
+                <Stack spacing={2} style={{ width: 260 }} className={style.input}>
                     <div className={style.log}>
-                        <TextField style={{ width: '100%' }} error={errors.login && true} size='small' label='Логин' {...register('login', { required: 'Все поля должны быть заполнены' })} />
+                        <TextField style={{ width: '100%' }} error={errors.login && true} size='small' label='Логин' {...register('login', { required: true })} />
                     </div>
                     <div className={style.pass}>
-                        <TextField style={{ width: '100%' }} error={errors.password && true} type='password' size='small' label='Пароль' {...register('password', { required: 'Все поля должны быть заполнены' })} />
+                        <TextField style={{ width: '100%' }} error={errors.password && true} type='password' size='small' label='Пароль' {...register('password', { required: true })} />
                     </div>
-                    {errors.login && <Alert severity='error'>{errors.login?.message}</Alert>}
+                    {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
+                    {Object.keys(errors).length === 0 && error && <Alert  severity='error'>{error.message}</Alert>}
                 </Stack>
                 <button type='submit'>Войти</button>
             </div>

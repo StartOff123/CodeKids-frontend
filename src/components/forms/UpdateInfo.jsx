@@ -18,7 +18,6 @@ const UpdateInfo = ({ onClose }) => {
         defaultValues: {
             name: data.name,
             surname: data.surname,
-            login: data.login,
         }
     })
 
@@ -48,11 +47,11 @@ const UpdateInfo = ({ onClose }) => {
                         <img src={avatar} alt="img" />
                     </div>
                     <div className='form-settings-name'>
-                        <TextField style={{ width: '100%' }} error={errors.name && true} size='small' label='Имя' {...register('name', { required: 'Все поля должны быть заполнены' })} />
-                        <TextField style={{ width: '100%', marginTop: 10 }} error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: 'Все поля должны быть заполнены' })} />
+                        <TextField style={{ width: '100%' }} error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
+                        <TextField style={{ width: '100%', marginTop: 10 }} error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
                     </div>
                 </div>
-                {errors && <Alert severity='error'>{errors.name?.message}</Alert>}
+                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
                 <button className='form-button'>Изменить</button>
             </Stack>
         </form>

@@ -26,7 +26,7 @@ const remiderSlice = createSlice({
     initialState,
     extraReducers: {
         [fetchRemider.pending]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status = 'loading'
         },
         [fetchRemider.fulfilled]: (state, action) => {
@@ -34,11 +34,11 @@ const remiderSlice = createSlice({
             state.status = 'loaded'
         },
         [fetchRemider.rejected]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status= 'error'
         },
         [fetchAddRemider.pending]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status = 'loading'
         },
         [fetchAddRemider.fulfilled]: (state, action) => {
@@ -54,18 +54,18 @@ const remiderSlice = createSlice({
             state.status = 'loaded'
         },
         [fetchAddRemider.rejected]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status= 'error'
         },
         [fetchRemoveRemider.pending]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status = 'loading'
         },
         [fetchRemoveRemider.fulfilled]: (state) => {
             state.status = 'loaded'
         },
         [fetchRemoveRemider.rejected]: (state) => {
-            state.remidersArr = []
+            state.remidersArr = null
             state.status= 'error'
         },
     }

@@ -3,18 +3,19 @@ import { Stack, TextField, Alert } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import 'react-phone-input-2/lib/style.css'
+import { Controller, useForm } from 'react-hook-form'
+import PhoneInput from 'react-phone-input-2'
+import "react-phone-input-2/lib/material.css"
 import { fetchUpdateStudent, fetchStudents } from '../../redux/slices/students'
 
 const UpdateStudent = ({ onClose, student }) => {
   const dispatch = useDispatch()
 
-  const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
+  const { register, handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
       name: student.name,
       surname: student.surname,
-      phone: student.phone,
+      phone: '',
     }
   })
 
@@ -41,11 +42,35 @@ const UpdateStudent = ({ onClose, student }) => {
       </div>
       <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
         <div className='form-name'>
-          <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: 'Все поля должны быть заполнены' })} />
-          <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: 'Все поля должны быть заполнены' })} />
+          <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
+          <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
         </div>
-        <TextField error={errors.phone && true} size='small' type='number' label='Номер телефона' {...register('phone', { required: 'Все поля должны быть заполнены' })} />
-        {errors && <Alert severity='error'>{errors.name?.message}</Alert>}
+        <Controller
+          name='phone'
+          control={control}
+          rules={{ required: true, minLength: 3 }}
+          defaultValue=''
+          render={({ field }) => {
+            return (
+              <PhoneInput
+                {...field}
+                inputProps={{
+                  name: 'phone',
+                  required: true,
+                }}
+                placeholder='+7 (999) 999-99-99'
+                inputStyle={{ width: '100%' }}
+                specialLabel={false}
+                onlyCountries={['ru']}
+                countryCodeEditable={false}
+                isValid={errors.phone && false}
+                country='ru'
+                onChange={value => field.onChange(value)}
+              />
+            );
+          }}
+        />
+        {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
         <button className='form-button'>Изменить</button>
       </Stack>
     </form>

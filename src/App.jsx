@@ -12,14 +12,18 @@ import Reports from "./pages/Reports"
 import Dashboard from "./pages/Dashboard"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAuthMe } from "./redux/slices/auth"
+import { fetchAuthMe, notAuth } from "./redux/slices/auth"
 import Loading from "./pages/Loading"
 
 const App = () => {
   const dispatch = useDispatch()
   const { status } = useSelector(state => state.auth)
   React.useEffect(() => {
-    dispatch(fetchAuthMe())
+    if (window.localStorage.getItem('token')) {
+      dispatch(fetchAuthMe())
+      return
+    }
+    dispatch(notAuth())
   }, [])
 
   return (

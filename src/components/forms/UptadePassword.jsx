@@ -1,17 +1,18 @@
-import React from 'react'
 import { Stack, TextField, Alert } from '@mui/material'
+import React from 'react'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import avatar from '../../assets/user.png'
 import 'react-phone-input-2/lib/style.css'
-import { fetchAuthMe, fetchUpdateMeData, fetchUpdatePassword } from '../../redux/slices/auth'
+import { closeError, doNotMatchPassword, fetchUpdatePassword } from '../../redux/slices/password'
 import Popup from 'reactjs-popup'
+import Confirmation from '../Сonfirmation/inedx'
 
 const UpdatePassword = ({ onClose }) => {
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.auth)
+    const { error, success } = useSelector(state => state.password)
 
     const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
         defaultValues: {
@@ -22,12 +23,15 @@ const UpdatePassword = ({ onClose }) => {
     })
 
     const onSubmit = async (values) => {
+        if (values.newPassword !== values.confirmationPassword) {
+            await dispatch(doNotMatchPassword())
+            return
+        }
         const params = {
             id: data._id,
             ...values
         }
-        dispatch(fetchUpdatePassword(params))
-        onClose()
+        await dispatch(fetchUpdatePassword(params))
     }
 
     return (
@@ -39,10 +43,14 @@ const UpdatePassword = ({ onClose }) => {
                     <p>Изменение пароля</p>
                 </div>
             </div>
-            <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
-                <TextField type='password' style={{ width: '100%' }} error={errors.name && true} size='small' label='Старый пароль' {...register('oldPassword', { required: 'Все поля должны быть заполнены' })} />
-                <TextField type='password' style={{ width: '100%' }} error={errors.name && true} size='small' label='Новый пароль' {...register('newPassword', { required: 'Все поля должны быть заполнены' })} />
-                <TextField type='password' style={{ width: '100%' }} error={errors.name && true} size='small' label='Подтвердите пароль' {...register('confirmationPassword', { required: 'Все поля должны быть заполнены' })} />
+            <Stack spacing={2} sx={{ width: 250 }} className='form-input'>
+                <TextField type='password' style={{ width: '100%' }} error={errors.oldPassword && true} size='small' label='Старый пароль' {...register('oldPassword', { required: true })} />
+                <TextField type='password' style={{ width: '100%' }} error={errors.newPassword && true} size='small' label='Новый пароль' {...register('newPassword', { required: true })} />
+                <TextField type='password' style={{ width: '100%' }} error={errors.confirmationPassword && true} size='small' label='Подтвердите пароль' {...register('confirmationPassword', { required: true })} />
+               
+                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
+                {Object.keys(errors).length === 0 && error && <Alert  severity='error'>{error.message}</Alert>}
+                {success && <Alert severity='success'>Пароль успешно изменён:)</Alert>}
             </Stack>
             <button className='form-button'>Изменить</button>
         </form>

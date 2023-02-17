@@ -6,6 +6,7 @@ import teacherReduser from './slices/teachers'
 import studentReduser from './slices/students'
 import lessonReduser from './slices/lessons'
 import reportReduser from './slices/report'
+import passwordReduser from './slices/password'
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         students: studentReduser,
         lessons: lessonReduser,
         report: reportReduser,
+        password: passwordReduser,
     }
 })
 
