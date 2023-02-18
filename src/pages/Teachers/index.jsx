@@ -32,7 +32,6 @@ const Teachers = () => {
                             position="center center"
                             trigger={<Button content='Добавить учителя' />}
                             modal
-                            nested
                         >
                             {close => (
                                 <RegisterForm onClose={close} />

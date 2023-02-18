@@ -2,12 +2,13 @@ import React from 'react'
 import { Stack, TextField, Alert } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { fetchRegister, fetchTeacher } from '../../redux/slices/teachers'
+import { fetchRegister, fetchTeacher, doNotMatchPassword } from '../../redux/slices/teachers'
 
 const RegisterForm = ({ onClose }) => {
     const dispatch = useDispatch()
+    const { error } = useSelector(state => state.teachers)
 
     const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
         defaultValues: {
@@ -15,10 +16,16 @@ const RegisterForm = ({ onClose }) => {
             surname: '',
             login: '',
             password: '',
+            confirmationPassword: '',
         }
     })
 
     const onSubmit = async (values) => {
+        if (values.password !== values.confirmationPassword) {
+            await dispatch(doNotMatchPassword())
+            return
+        }
+
         await dispatch(fetchRegister(values))
         await dispatch(fetchTeacher())
         onClose()
@@ -41,16 +48,18 @@ const RegisterForm = ({ onClose }) => {
             </div>
             <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
                 <div className='form-name'>
-                    <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: 'Все поля должны быть заполнены' })} />
-                    <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: 'Все поля должны быть заполнены' })} />
+                    <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
+                    <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
                 </div>
                 <Stack className='form-login'>
-                    <TextField error={errors.login && true} size='small' label='Логин' {...register('login', { required: 'Все поля должны быть заполнены' })} />
+                    <TextField error={errors.login && true} size='small' label='Логин' {...register('login', { required: true })} />
                 </Stack>
-                <Stack className='form-pass'>
-                    <TextField error={errors.password && true} type='password' size='small' label='Пароль' {...register('password', { required: 'Все поля должны быть заполнены' })} />
+                <Stack spacing={2} className='form-pass'>
+                    <TextField error={errors.password && true} type='password' size='small' label='Пароль' {...register('password', { required: true })} />
+                    <TextField error={errors.confirmationPassword && true} type='password' size='small' label='Поддтвердите пароль' {...register('confirmationPassword', { required: true })} />
                 </Stack>
-                {errors && <Alert severity='error'>{errors.name?.message}</Alert>}
+                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
+                {Object.keys(errors).length === 0 && error && <Alert  severity='error'>{error.message}</Alert>}
                 <button className='form-button'>Зарегистрировать</button>
             </Stack>
         </form>

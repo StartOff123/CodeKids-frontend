@@ -7,15 +7,17 @@ import { Controller, useForm } from 'react-hook-form'
 import PhoneInput from 'react-phone-input-2'
 import "react-phone-input-2/lib/material.css"
 import { fetchUpdateStudent, fetchStudents } from '../../redux/slices/students'
+import parsePhoneNumber from 'libphonenumber-js'
 
 const UpdateStudent = ({ onClose, student }) => {
   const dispatch = useDispatch()
+  const phoneNumber = parsePhoneNumber(String(student.phone), 'RU').format('E.164')
 
   const { register, handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
       name: student.name,
       surname: student.surname,
-      phone: '',
+      phone: phoneNumber,
     }
   })
 

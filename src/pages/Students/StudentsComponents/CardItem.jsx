@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchRemoveStudent, fetchStudents } from '../../../redux/slices/students'
 import Popup from 'reactjs-popup'
 import UpdateStudent from '../../../components/forms/UpdateStudent'
+import parsePhoneNumber from 'libphonenumber-js'
 
 const CardItem = ({ students }) => {
   const dispatch = useDispatch()
   const { data } = useSelector(state => state.auth)
+  const phoneNumber = parsePhoneNumber(String(students.phone), 'RU').format('NATIONAL')
 
   const onRemove = async () => {
     await dispatch(fetchRemoveStudent(students._id))
@@ -37,7 +39,7 @@ const CardItem = ({ students }) => {
         <div className={style.top}>
           <div className={style.infoInner} style={data.status != 'admin' ? { marginTop: 0 } : {}}>
             <h2>{students.name} {students.surname}</h2>
-            <p>Номер телефона: {students.phone}</p>
+            <p>Номер телефона:  {phoneNumber}</p>
           </div>
         </div>
       </div>
