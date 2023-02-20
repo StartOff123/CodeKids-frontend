@@ -1,10 +1,10 @@
 import React from 'react'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-import { Stack, TextField, TextareaAutosize, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
+import { Stack, TextField, TextareaAutosize, Select, MenuItem, InputLabel, FormControl, Alert } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { fetchAddLesson, fetchLessons } from '../../redux/slices/lessons'
 
 const AddLesson = ({ onClose }) => {
@@ -13,27 +13,27 @@ const AddLesson = ({ onClose }) => {
     const { data } = useSelector(state => state.auth)
     const [date, setDate] = React.useState(null)
 
-    const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, control, formState: { errors } } = useForm({
         defaultValues: {
             title: '',
             theme: '',
             studentId: '',
-            date: '',
+            date: date,
         }
     })
-    
+
     const onSubmit = async (values) => {
-        const { date, student, ...value } = values
+        const { date, ...value } = values
         const ISOdate = new Date(date).toISOString()
         const params = {
             date: ISOdate,
-            student,
             teacherId: data._id,
             ...value
         }
-        await dispatch(fetchAddLesson(params))
-        await dispatch(fetchLessons())
-        onClose()
+        console.log(params)
+        // await dispatch(fetchAddLesson(params))
+        // await dispatch(fetchLessons())
+        // onClose()
     }
 
     return (
@@ -52,23 +52,29 @@ const AddLesson = ({ onClose }) => {
                 </div>
             </div>
             <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
-                <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: 'Все поля должны быть заполнены' })}/>
+                <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: true })} />
                 <TextareaAutosize color='secondary' placeholder='Описание урока' {...register('theme')} />
                 <FormControl className='form-studetn'>
-                    <InputLabel size='small' id="demo-simple-select-label">Ученик</InputLabel>
-                    <Select size='small' label='Ученик' labelId='demo-simple-select-label' {...register('studentId', { required: 'Все поля должны быть заполнены' })}>
-                        {studentsArr.map((option) => 
-                            <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
-                        )}
-                    </Select>
+                    <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>
+                    <Controller
+                        as={
+                            <Select error={errors.studentId && true} size='small' label='Ученик' labelId='demo-simple-select-label'>
+                                {studentsArr.map((option) =>
+                                    <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
+                                )}
+                            </Select>
+                        }
+                        name='studentId'
+                        control={control}
+                    />
                 </FormControl>
                 <DateTimePicker
-                    size='small'
                     label='Дата и время урока'
-                    renderInput={params => <TextField {...params} {...register('date', { required: 'Все поля должны быть заполнены' })}/>}
+                    renderInput={params => <TextField error={errors.date && true} size='small' {...params} {...register('date', { required: true })} />}
                     value={date}
                     onChange={newDate => setDate(newDate)}
                 />
+                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
                 <button className='form-button'>Запланировать</button>
             </Stack>
         </form>

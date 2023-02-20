@@ -59,7 +59,7 @@ const RegisterForm = ({ onClose }) => {
                     <TextField error={errors.confirmationPassword && true} type='password' size='small' label='Поддтвердите пароль' {...register('confirmationPassword', { required: true })} />
                 </Stack>
                 {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
-                {Object.keys(errors).length === 0 && error && <Alert  severity='error'>{error.message}</Alert>}
+                {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
                 <button className='form-button'>Зарегистрировать</button>
             </Stack>
         </form>
