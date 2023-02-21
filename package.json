@@ -6,6 +6,7 @@
     "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.9",
     "@mui/lab": "^5.0.0-alpha.118",
     "@mui/material": "^5.11.7",
     "@mui/styled-engine-sc": "^5.11.0",
@@ -31,6 +32,7 @@
     "reactjs-popup": "^2.0.5",
     "redux-toolkit": "^1.1.2",
     "sass": "^1.58.0",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

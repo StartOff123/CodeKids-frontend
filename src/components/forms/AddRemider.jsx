@@ -44,7 +44,7 @@ const AddRemider = ({ onClose }) => {
             </div>
             <Stack spacing={2} sx={{ width: 350 }} className='form-input'>
                 <TextField label='Название заметки' error={errors.title && true} size='small' {...register('title', { required: 'Все красные поля должны быть заполнены' })} />
-                <TextareaAutosize color='secondary' placeholder='Текст заметки' {...register('content')}/>
+                <TextareaAutosize color='secondary' placeholder='Текст заметки' {...register('content')} />
                 {errors.title && <Alert severity='error'>{errors.title?.message}</Alert>}
                 <button type='submit' className='form-button'>Добавить</button>
             </Stack>
