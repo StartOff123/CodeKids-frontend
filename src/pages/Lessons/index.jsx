@@ -43,7 +43,7 @@ const Lessons = () => {
                     {comingLessons &&
                         !isLessonsLoading ?
                         comingLessons.length == 0 ? <h5>Нет запланированнх уроков</h5>
-                            : comingLessons.map((lesson) =>
+                            : comingLessons.slice().reverse().map((lesson) =>
                                 <Lesson key={lesson._id} lessons={lesson} isCarriedOut={false} />
                             )
                         : <div style={{ width: '100%', textAlign: 'center' }}>
@@ -56,7 +56,7 @@ const Lessons = () => {
                     {heldLessons &&
                         !isLessonsLoading ?
                         heldLessons.length == 0 ? <h5>Вы еще не провели ни одного урока</h5>
-                            : heldLessons.map((lesson) =>
+                            : heldLessons.slice().reverse().map((lesson) =>
                                     <Lesson key={lesson._id} lessons={lesson} isCarriedOut={true} />
                             )
                         : <div style={{ width: '100%', textAlign: 'center' }}>

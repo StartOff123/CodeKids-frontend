@@ -30,10 +30,9 @@ const AddLesson = ({ onClose }) => {
             teacherId: data._id,
             ...value
         }
-        console.log(params)
-        // await dispatch(fetchAddLesson(params))
-        // await dispatch(fetchLessons())
-        // onClose()
+        await dispatch(fetchAddLesson(params))
+        await dispatch(fetchLessons())
+        onClose()
     }
 
     return (
@@ -57,24 +56,50 @@ const AddLesson = ({ onClose }) => {
                 <FormControl className='form-studetn'>
                     <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>
                     <Controller
-                        as={
-                            <Select error={errors.studentId && true} size='small' label='Ученик' labelId='demo-simple-select-label'>
-                                {studentsArr.map((option) =>
-                                    <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
-                                )}
-                            </Select>
-                        }
+                        render={({ field }) => {
+                            return (
+                                <Select
+                                    error={errors.studentId && true}
+                                    size='small'
+                                    label='Ученик'
+                                    labelId='demo-simple-select-label'
+                                    inputProps={{
+                                        name: 'studentId'
+                                    }}
+                                    onChange={value => field.onChange(value.target.value)}
+                                >
+                                    {studentsArr.map((option) =>
+                                        <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
+                                    )}
+                                </Select>
+                            )
+                        }}
+                        rules={{
+                            required: true
+                        }}
                         name='studentId'
                         control={control}
                     />
                 </FormControl>
-                <DateTimePicker
-                    label='Дата и время урока'
-                    renderInput={params => <TextField error={errors.date && true} size='small' {...params} {...register('date', { required: true })} />}
-                    value={date}
-                    onChange={newDate => setDate(newDate)}
+                <Controller
+                    render={({ field }) => {
+                        return (
+                            <DateTimePicker
+                                label='Дата и время урока'
+                                renderInput={params => <TextField size='small' {...params} error={errors.date && true} {...register('date', { required: true })} />}
+                                value={field.value}
+                                onChange={value => field.onChange(value)}
+                            />
+                        )
+                    }}
+                    rules={{
+                        required: true
+                    }}
+                    name='date'
+                    control={control}
                 />
-                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
+
+                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
                 <button className='form-button'>Запланировать</button>
             </Stack>
         </form>

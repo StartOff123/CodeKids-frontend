@@ -50,7 +50,7 @@ const UpdateStudent = ({ onClose, student }) => {
         <Controller
           name='phone'
           control={control}
-          rules={{ required: true, minLength: 3 }}
+          rules={{ required: true, minLength: 11 }}
           defaultValue=''
           render={({ field }) => {
             return (

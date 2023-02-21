@@ -48,7 +48,7 @@ const AddStudent = ({ onClose }) => {
         <Controller
           name='phone'
           control={control}
-          rules={{ required: true, minLength: 3 }}
+          rules={{ required: true, minLength: 11 }}
           defaultValue=""
           render={({ field }) => {
             return (
@@ -67,11 +67,11 @@ const AddStudent = ({ onClose }) => {
                 country='ru'
                 onChange={value => field.onChange(value)}
               />
-            );
+            )
           }}
         />
-        {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
-        <button onClick={() => console.log(errors)} className='form-button'>Добавить</button>
+        {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
+        <button className='form-button'>Добавить</button>
       </Stack>
     </form>
   )
