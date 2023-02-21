@@ -16,8 +16,8 @@ const Lesson = ({ lessons, isCarriedOut }) => {
         dispatch(fetchLessons())
     }
 
-    const onConduct = () => {
-        dispatch(fetchCouductLesson(lessons._id))
+    const onConduct = async () => {
+        await dispatch(fetchCouductLesson(lessons._id))
         dispatch(fetchLessons())
     }
 
