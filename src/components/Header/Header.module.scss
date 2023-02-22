@@ -1,4 +1,4 @@
-@import  '../../styles/colors.scss';
+@import '../../styles/colors.scss';
 
 .header {
     box-sizing: border-box;
@@ -21,44 +21,77 @@
 }
 
 .burger {
-    margin-right: 30px;
+    margin-right: 20px;
     position: relative;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all .2s;
 
-    span {
-        position: absolute;
-        content: '';
-        top: 50%;
-        left: 0;
-        background: $menuBg;
-        width: 100%;
-        height: 2px;
-        border-radius: 2px;
-        transform: translate(0, -50%);
-    }
+    .burgerInner {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
 
-    &::after {
-        position: absolute;
-        content: '';
-        top: 5px;
-        left: 0;
-        background: $menuBg;
-        width: 100%;
-        height: 2px;
-        border-radius: 2px;
-    }
+        &.close {
+            &:hover {
+                span {
+                    left: -3px;
+                }
+    
+                &::after {
+                    left: -6px;
+                }
+            }
+        }
+        
+        &.open {
+            &:hover {
+                span {
+                    left: 3px;
+                }
+    
+                &::after {
+                    left: 6px;
+                }
+            }
+        }
 
-    &::before {
-        position: absolute;
-        content: '';
-        bottom: 5px;
-        left: 0;
-        background: $menuBg;
-        width: 100%;
-        height: 2px;
-        border-radius: 2px;
+        span {
+            transition: all .2s;
+            position: absolute;
+            content: '';
+            top: 50%;
+            left: 0;
+            background: $menuBg;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            transform: translate(0, -50%);
+        }
+    
+        &::after {
+            transition: all .2s;
+            position: absolute;
+            content: '';
+            top: 5px;
+            left: 0;
+            background: $menuBg;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+        }
+    
+        &::before {
+            position: absolute;
+            content: '';
+            bottom: 5px;
+            left: 0;
+            background: $menuBg;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+        }
     }
 }
 
@@ -72,7 +105,7 @@
 
     svg {
         path {
-            fill: $menuDarkBg;  
+            fill: $menuDarkBg;
         }
     }
 
@@ -111,10 +144,24 @@
 .bottons {
     display: flex;
     align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+
     img {
+        padding: 10px;
+        transition: all .2s;
         cursor: pointer;
-        margin: 0 10px;
         width: 27px;
         height: 27px;
+
+        &:last-child {
+            &:hover {
+                background: rgba($color: #5f0000, $alpha: .2);
+            }
+        }
+
+        &:hover {
+            background: rgba($color: #000000, $alpha: .1);
+        }
     }
 }

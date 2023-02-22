@@ -1,24 +1,22 @@
 import React from 'react'
-import { Stack, TextField, Alert } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { fetchRegister, fetchTeacher, doNotMatchPassword } from '../../redux/slices/teachers'
+import { Stack, TextField, Alert, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, ThemeProvider } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { theme } from '../../muiTheme/theme'
 
 const RegisterForm = ({ onClose }) => {
     const dispatch = useDispatch()
     const { error } = useSelector(state => state.teachers)
 
-    const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
-        defaultValues: {
-            name: '',
-            surname: '',
-            login: '',
-            password: '',
-            confirmationPassword: '',
-        }
-    })
+    const [showPassword, setShowPassword] = React.useState(false)
+    const handleClickShowPassword = () => setShowPassword(show => !show)
+    const handleMouseDownPassword = event => event.preventDefault()
+
+    const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = async (values) => {
         if (values.password !== values.confirmationPassword) {
@@ -46,22 +44,46 @@ const RegisterForm = ({ onClose }) => {
                     <p>Регистрация учителя</p>
                 </div>
             </div>
-            <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
-                <div className='form-name'>
-                    <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
-                    <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
-                </div>
-                <Stack className='form-login'>
-                    <TextField error={errors.login && true} size='small' label='Логин' {...register('login', { required: true })} />
+            <ThemeProvider theme={theme}>
+                <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
+                    <div className='form-name'>
+                        <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
+                        <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
+                    </div>
+                    <Stack className='form-login'>
+                        <TextField error={errors.login && true} size='small' label='Логин' {...register('login', { required: true })} />
+                    </Stack>
+                    <Stack spacing={2} className='form-pass'>
+                        <FormControl>
+                            <InputLabel error={errors.password && true} size='small'>Пароль</InputLabel>
+                            <OutlinedInput
+                                size='small'
+                                error={errors.password && true}
+                                type={showPassword ? 'text' : 'password'}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                {...register('password', { required: true })}
+                                label="Пароль"
+                            />
+                        </FormControl>
+                        <TextField error={errors.confirmationPassword && true} type='password' size='small' label='Поддтвердите пароль' {...register('confirmationPassword', { required: true })} />
+                    </Stack>
+                    {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
+                    {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
+                    <button className='form-button'>Зарегистрировать</button>
                 </Stack>
-                <Stack spacing={2} className='form-pass'>
-                    <TextField error={errors.password && true} type='password' size='small' label='Пароль' {...register('password', { required: true })} />
-                    <TextField error={errors.confirmationPassword && true} type='password' size='small' label='Поддтвердите пароль' {...register('confirmationPassword', { required: true })} />
-                </Stack>
-                {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
-                {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
-                <button className='form-button'>Зарегистрировать</button>
-            </Stack>
+            </ThemeProvider>
+
         </form>
     )
 }

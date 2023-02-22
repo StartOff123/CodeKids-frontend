@@ -1,20 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { Stack, TextField, TextareaAutosize, Alert } from '@mui/material'
+import { Stack, TextField, TextareaAutosize, Alert, ThemeProvider } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { fetchAddRemider, fetchRemider } from '../../redux/slices/remiders'
+import { theme } from '../../muiTheme/theme'
 
 const AddRemider = ({ onClose }) => {
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.auth)
-    const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
-        defaultValues: {
-            title: '',
-            content: '',
-        }
-    })
+    const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm()
 
     const onSubmit = async (values) => {
         const teacher = data._id
@@ -42,12 +38,14 @@ const AddRemider = ({ onClose }) => {
                     <p>Добавление заметки</p>
                 </div>
             </div>
-            <Stack spacing={2} sx={{ width: 350 }} className='form-input'>
-                <TextField label='Название заметки' error={errors.title && true} size='small' {...register('title', { required: 'Все красные поля должны быть заполнены' })} />
-                <TextareaAutosize color='secondary' placeholder='Текст заметки' {...register('content')} />
-                {errors.title && <Alert severity='error'>{errors.title?.message}</Alert>}
-                <button type='submit' className='form-button'>Добавить</button>
-            </Stack>
+            <ThemeProvider theme={theme}>
+                <Stack spacing={2} sx={{ width: 350 }} className='form-input'>
+                    <TextField label='Название заметки' error={errors.title && true} size='small' {...register('title', { required: 'Все красные поля должны быть заполнены' })} />
+                    <TextField label='Текст заметки' multiline maxRows={Infinity} size='small' {...register('content')} />
+                    {errors.title && <Alert severity='error'>{errors.title?.message}</Alert>}
+                    <button type='submit' className='form-button'>Добавить</button>
+                </Stack>
+            </ThemeProvider>
         </form>
     )
 }

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     isVisib: true,
+    menuBtn: true
 }
 
 const menuSlice = createSlice({
@@ -10,6 +11,7 @@ const menuSlice = createSlice({
     reducers: {
         setIsVisib: (state, action) => {
             state.isVisib = action.payload
+            state.menuBtn = action.payload
         },
     }
 })

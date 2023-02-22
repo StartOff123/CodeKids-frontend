@@ -12,7 +12,7 @@ import SettingsForm from '../forms/SettingsForm'
 const Header = () => {
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.auth)
-    const { isVisib } = useSelector(state => state.visib)
+    const { isVisib, menuBtn } = useSelector(state => state.visib)
 
     const isVisibMenu = () => {
         dispatch(setIsVisib(!isVisib))
@@ -27,7 +27,9 @@ const Header = () => {
         <div className={style.header} style={isVisib ? { width: 'calc(100% - 223px)' } : { width: 'calc(100% - 76px)' }}>
             <div className={style.left}>
                 <div className={style.burger} onClick={() => isVisibMenu()}>
-                    <span></span>
+                    <div className={menuBtn ? style.burgerInner + ' ' + style.close : style.burgerInner + ' ' + style.open}>
+                        <span></span>
+                    </div>
                 </div>
                 <div className={style.search}>
                     <input type="text" placeholder='Поиск...' />
@@ -45,7 +47,7 @@ const Header = () => {
                     <img src={user} alt="img" />
                     <Popup
                         position='bottom right'
-                        trigger={ <img src={settings} alt="img" /> }
+                        trigger={<img src={settings} alt="img" />}
                         overlayStyle={{ background: 'transparent' }}
                         nested
                     >
