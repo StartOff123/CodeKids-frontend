@@ -26,7 +26,7 @@ const Studetns = () => {
                     <h1>Управление</h1>
                     <p>Ученики</p>
                 </div>
-                {data.status === 'admin' &&
+                {data.status === 'admin' || 'genadmin' &&
                     <div className={style.buttons}>
                         <Popup
                             position='top center'

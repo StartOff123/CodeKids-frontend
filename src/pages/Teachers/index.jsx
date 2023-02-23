@@ -15,6 +15,15 @@ const Teachers = () => {
     const { data } = useSelector(state => state.auth)
     const isTeachersLoading = status === 'loading'
 
+    var filterArrTeachers = new Array()
+    var notMeArrTeachers = new Array()
+
+    if (!isTeachersLoading) {
+        filterArrTeachers = teachersArr.filter(teacher => teacher._id === data._id)
+        notMeArrTeachers = teachersArr.filter(teacher => teacher._id !== data._id)
+        filterArrTeachers.push(...notMeArrTeachers)
+    }
+
     React.useEffect(() => {
         dispatch(fetchTeacher())
     }, [])
@@ -44,7 +53,7 @@ const Teachers = () => {
                 <div className={style.card}>
                     {teachersArr &&
                         !isTeachersLoading ?
-                        teachersArr.map((teacher) =>
+                        filterArrTeachers.map((teacher) =>
                             <CardItem key={teacher._id} id={teacher._id} teacher={teacher} />
                         ) :
                         <img className={style.load} src={loading} alt="" style={{ gridColumnStart: 2, margin: '0 auto' }} />

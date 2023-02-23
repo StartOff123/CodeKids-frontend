@@ -1,6 +1,7 @@
 import React from 'react'
 import style from '../Students.module.scss'
 import remove from '../../../assets/remove.png'
+import Сonfirmation from '../../../components/forms/Сonfirmation'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRemoveStudent, fetchStudents } from '../../../redux/slices/students'
 import Popup from 'reactjs-popup'
@@ -20,7 +21,7 @@ const CardItem = ({ students }) => {
   return (
     <div className={style.cardItem}>
       <div className={style.info}>
-        {data.status === 'admin' ?
+        {data.status !== 'defaultTeacher' ?
           <div className={style.cardButtons}>
             <div>
               <Popup
@@ -32,12 +33,20 @@ const CardItem = ({ students }) => {
               >
                 {(close) => <UpdateStudent onClose={close} student={students} />}
               </Popup>
-              <img src={remove} alt="img" onClick={onRemove} />
+              <Popup
+                position='center center'
+                trigger={<img src={remove} alt="img" />}
+                modal
+              >
+                {close =>
+                  <Сonfirmation action={onRemove} onClose={close} title={`Уралить ученика: ${students.name} ${students.surname}?`} btnContent='Удалить' />
+                }
+              </Popup>
             </div>
           </div> : ''
         }
         <div className={style.top}>
-          <div className={style.infoInner} style={data.status != 'admin' ? { marginTop: 0 } : {}}>
+          <div className={style.infoInner} style={data.status === 'defaultTeacher' ? { marginTop: 0 } : {}}>
             <h2>{students.name} {students.surname}</h2>
             <p>Номер телефона:  {phoneNumber}</p>
           </div>

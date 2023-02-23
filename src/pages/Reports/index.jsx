@@ -33,7 +33,7 @@ const Reports = () => {
                     <h1>Управление</h1>
                     <p>Отчёты</p>
                 </div>
-                {data.status === 'admin' &&
+                {data.status === 'genadmin' &&
                     <div className={style.buttons}>
                         <Button onClick={onAllRemove} content='Отчистить отчет' />
                     </div>
