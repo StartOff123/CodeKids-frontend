@@ -7,8 +7,8 @@
     align-items: center;
     justify-content: space-between;
     height: 80px;
-    background: $bg;
-    border-bottom: 2px solid #D9DBDD;
+    background: var(--background);
+    border-bottom: 2px solid var(--header-border-color);
     padding: 0 25px;
     position: fixed;
     z-index: 10;
@@ -63,7 +63,7 @@
             content: '';
             top: 50%;
             left: 0;
-            background: $menuBg;
+            background: var(--menu-background);
             width: 100%;
             height: 2px;
             border-radius: 2px;
@@ -76,7 +76,7 @@
             content: '';
             top: 5px;
             left: 0;
-            background: $menuBg;
+            background: var(--menu-background);
             width: 100%;
             height: 2px;
             border-radius: 2px;
@@ -87,7 +87,7 @@
             content: '';
             bottom: 5px;
             left: 0;
-            background: $menuBg;
+            background: var(--menu-background);
             width: 100%;
             height: 2px;
             border-radius: 2px;
@@ -96,17 +96,17 @@
 }
 
 .search {
-    background: $white;
+    background: var(--block-color);
     padding: 8px 14px;
-    border: 1px solid #DEE7F0;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    border: 1px solid var(--header-border-color);
+    box-shadow: 0 5px 6px 0px var(--shadow);
     border-radius: 8px;
     display: flex;
     align-items: center;
 
     svg {
         path {
-            fill: $menuDarkBg;
+            fill: var(--text-color-2);
         }
     }
 
@@ -116,7 +116,7 @@
         border: none;
         outline: none;
         background: transparent;
-        color: $menuDarkBg;
+        color: var(--input-color);
     }
 }
 
@@ -130,14 +130,18 @@
 
     h2 {
         font-size: 16px;
-        color: $mainColor;
+        color: var(--text-color-2);
         font-weight: 700;
     }
 
     p {
         font-size: 14px;
-        color: #84ABC6;
+        color: var(--context-color);
         font-weight: 500;
+    }
+
+    svg {
+        color: var(--text-color-2);
     }
 }
 
@@ -166,16 +170,16 @@
     width: 27px;
     height: 27px;
     transition: all .2s;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    box-shadow: 0 5px 6px 0px var(--shadow);
     cursor: pointer;
-    background: $white;
+    background: var(--block-color);
     border-radius: 50%;
 
     &:hover {
-        background: $mainColor;
+        background: var(--main-color);
 
         svg {
-            color: $white;
+            color: var(--white);
         }
     }
 
@@ -187,6 +191,6 @@
 
     svg {
         transition: all .2s;
-        color: $mainColor;
+        color: var(--main-color);
     }
 }

@@ -11,65 +11,11 @@
 .login {
     display: inline-block;
     padding: 30px 40px;
-    background: $white;
+    background: var(--white);
     border: 2px solid #DEE7F0;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    box-shadow: 0 5px 6px 0px var(--shadow);
     border-radius: 40px;
     margin-top: 140px;
-
-    button {
-        margin-left: 0;
-        margin-top: 30px;
-        background: #48A6CB;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        width: 100%;
-        padding: 13px 32px;
-        font-weight: 700;
-        font-size: 16px;
-        color: $white;
-        cursor: pointer;
-        transition: all .15s;
-
-        div {
-            position: relative;
-            height: 18px;
-            width: 100%;
-
-            span {
-                position: absolute;
-                content: '';
-                top: 0;
-                left: 50%;
-                width: 18px;
-                height: 100%;
-                border-radius: 50%;
-                border: 2px solid $white;
-                border-top: 2px solid transparent;
-                transform: translateX(-50%);
-                animation: load 1s linear infinite;
-
-                @keyframes load {
-                    0% {
-                        transform: translateX(-50%) rotate(0deg);
-                    }
-
-                    100% {
-                        transform: translateX(-50%) rotate(360deg);
-                    }
-                }
-            }
-        }
-
-        &:hover {
-            background: #319fca;
-        }
-
-        &:active {
-            background: #2b90b8;
-        }
-    }
 }
 
 .pass {
@@ -104,20 +50,20 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background: $logoColor;
+        background: var(--logo-color);
     }
 }
 
 .auth {
     h2 {
-        color: $logoColor;
+        color: var(--logo-color);
         font-family: 'Itim';
         font-weight: 400;
         font-size: 33px;
     }
 
     p {
-        color: $mainColor;
+        color: var(--main-color);
         font-weight: 700;
         font-size: 16px;
     }
@@ -125,5 +71,5 @@
 
 .input {
     margin-top: 20px;
-    color: $mainColor;
+    color: var(--main-color);
 }

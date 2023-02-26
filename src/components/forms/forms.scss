@@ -3,9 +3,9 @@
 .form {
     box-sizing: border-box;
     padding: 15px 20px;
-    background: $white;
+    background: var(--white);
     border: 1px solid #DEE7F0;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    box-shadow: 0 5px 6px 0px var(--shadow);
     border-radius: 8px;
 }
 
@@ -13,7 +13,7 @@
     text-align: right;
 
     svg {
-        color: $mainColor;
+        color: var(--main-color);
         cursor: pointer;
         transition: all .15s;
 
@@ -46,20 +46,20 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background: $logoColor;
+        background: var(--logo-color);
     }
 }
 
 .form-logo-title {
     h2 {
-        color: $logoColor;
+        color: var(--logo-color);
         font-family: 'Itim';
         font-weight: 400;
         font-size: 26px;
     }
 
     p {
-        color: $mainColor;
+        color: var(--main-color);
         font-weight: 700;
         font-size: 16px;
     }
@@ -75,7 +75,7 @@
     padding: 10px 20px;
     font-weight: 700;
     font-size: 16px;
-    color: $white;
+    color: var(--white);
     cursor: pointer;
     margin-left: 0;
     transition: all .15s;
@@ -91,7 +91,7 @@
 
 .form-input {
     margin-top: 20px;
-    color: $mainColor;
+    color: var(--main-color);
 
     h2 {
         font-weight: 700;
@@ -158,7 +158,7 @@
             left: 0;
             display: block;
             font-size: 25px;
-            color: $white;
+            color: var(--white);
             width: 100%;
             text-align: center;
             background-color: rgba($color: #000000, $alpha: .3);
@@ -184,12 +184,12 @@
 }
 
 .textfiled {
-    border-color: $mainColor;
+    border-color: var(--main-color);
     background-color: #000000;
 }
 
 .confirmationText {
-    color: $mainColor;
+    color: var(--main-color);
     font-size: 18px;
 }
 
@@ -207,7 +207,7 @@
         left: 0;
         width: 100%;
         height: 1px;
-        background: $mainColor;
+        background: var(--main-color);
     }
 
     button {
@@ -226,7 +226,7 @@
             padding: 8px 11px;
             font-weight: 700;
             font-size: 16px;
-            color: $mainColor;
+            color: var(--main-color);
             cursor: pointer;
             transition: all .15s;
             margin-left: 10px;

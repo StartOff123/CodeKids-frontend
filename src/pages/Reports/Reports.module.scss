@@ -13,11 +13,11 @@
         text-align: center;
         margin: 20px 0;
         margin-top: 40px;
-        background: rgba($color: $menuBg, $alpha: .3);
+        background: var(--not-item);
         font-size: 20px;
         padding: 10px 0;
         border-radius: 5px;
-        color: $menuBg;
+        color: var(--menu-background);
     }
 }
 
@@ -33,28 +33,28 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 36px;
-        color: $mainColor;
+        color: var(--main-color);
     }
 
     p {
         font-weight: 400;
         font-size: 18px;
         line-height: 29px;
-        color: $mainColor;
+        color: var(--main-color);
     }
 }
 
 .table {
     width: 100%;
-    background: $white;
+    background: var(--white);
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    box-shadow: 0 5px 6px 0px var(--shadow);
 
     thead {
         th {
             text-align: left;
-            color: $mainColor;
+            color: var(--main-color);
         }
     }
 

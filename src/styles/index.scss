@@ -1,7 +1,7 @@
 @import './colors.scss';
 
 body {
-  background: $bg;
+  background: var(--background);
   font-family: 'Lato', sans-serif;
   overflow-x: hidden;
 }

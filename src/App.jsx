@@ -14,8 +14,10 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAuthMe, notAuth } from "./redux/slices/auth"
 import Loading from "./pages/Loading"
+import { useTheme } from "./Theme/useTheme"
 
 const App = () => {
+  const { theme, setTheme } = useTheme()
   const dispatch = useDispatch()
   const { status } = useSelector(state => state.auth)
   React.useEffect(() => {

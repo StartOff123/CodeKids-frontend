@@ -20,14 +20,14 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 36px;
-        color: $mainColor;
+        color: var(--main-color);
     }
 
     p {
         font-weight: 400;
         font-size: 18px;
         line-height: 29px;
-        color: $mainColor;
+        color: var(--main-color);
     }
 }
 
@@ -47,9 +47,9 @@
     box-sizing: border-box;
     max-width: 360px;
     min-width: 310px;
-    background: $white;
+    background: var(--white);
     border: 1px solid #DEE7F0;
-    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    box-shadow: 0 5px 6px 0px var(--shadow);
     border-radius: 8px;
 }
 
@@ -89,14 +89,14 @@
     p {
         line-height: 20px;
         font-size: 14px;
-        color: $mainColor;
+        color: var(--main-color);
     }
 }
 
 .cardButtons {
     display: flex;
     justify-content: right;
-    border-bottom: 1px solid $mainColor;
+    border-bottom: 1px solid var(--main-color);
     padding-bottom: 10px;
 
     div {
