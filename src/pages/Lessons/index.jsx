@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Lessons.module.scss'
 import Popup from 'reactjs-popup'
-import Button from '../../UI/Button'
+import TitleButton from '../../UI/Buttons/TitleButton'
 import Lesson from './LessonsComponents/Lesson'
 import loading from '../../assets/loading2.svg'
 import AddLesson from '../../components/forms/AddLesson'
@@ -30,7 +30,16 @@ const Lessons = () => {
                 <div className={style.buttons}>
                     <Popup
                         position="center center"
-                        trigger={<Button content='Запланировать урок' />}
+                        trigger={
+                            <TitleButton
+                                content='Запланировать урок'
+                                icon={
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                    </svg>
+                                }
+                            />
+                        }
                         modal
                     >
                         {close => <AddLesson onClose={close} />}
@@ -57,7 +66,7 @@ const Lessons = () => {
                         !isLessonsLoading ?
                         heldLessons.length == 0 ? <h5>Вы еще не провели ни одного урока</h5>
                             : heldLessons.slice().reverse().map((lesson) =>
-                                    <Lesson key={lesson._id} lessons={lesson} isCarriedOut={true} />
+                                <Lesson key={lesson._id} lessons={lesson} isCarriedOut={true} />
                             )
                         : <div style={{ width: '100%', textAlign: 'center' }}>
                             <img className={style.load} src={loading} alt="" />

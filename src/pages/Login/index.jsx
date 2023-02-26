@@ -8,6 +8,7 @@ import style from './Login.module.scss'
 import logo from '../../assets/logo.png'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { theme } from '../../muiTheme/theme'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const Login = () => {
     const isAuth = useSelector(selectIsAuth)
@@ -75,9 +76,9 @@ const Login = () => {
                         </div>
                         {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
                         {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
+                        <MainButton content='Войти'/>
                     </Stack>
                 </ThemeProvider>
-                <button type='submit'>Войти</button>
             </div>
         </form>
     )

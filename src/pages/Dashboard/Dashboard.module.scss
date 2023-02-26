@@ -26,3 +26,184 @@
         color: $mainColor;
     }
 }
+
+.dashboardContent {
+    margin-top: 20px;
+    display: grid;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+.component {
+    overflow: hidden;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    background: $white;
+    border: 1px solid #DEE7F0;
+    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+    border-radius: 8px;
+
+    h1 {
+        color: $mainColor;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
+
+.infoTop {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+}
+
+.avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+    }
+}
+
+.infoContent {
+    margin-left: 10px;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        color: $borderColor;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 16px;
+        color: $mainColor;
+    }
+}
+
+.infoStatistics {
+    margin-top: 10px;
+    padding-top: 5px;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 55px;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $borderColor;
+    }
+
+    p {
+        margin-top: 5px;
+        color: $mainColor;
+
+        font {
+            font-weight: 600;
+            color: $borderColor;
+        }
+    }
+}
+
+.lessonsContent {
+    position: relative;
+    overflow-y: scroll;
+    max-height: 140px;
+    padding-right: 4px;
+
+    p {
+        width: 100%;
+        text-align: center;
+        background: rgba($color: $menuBg, $alpha: .3);
+        font-size: 16px;
+        padding: 10px 0;
+        border-radius: 5px;
+        color: $menuBg;
+    }
+
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: $borderColor;
+    }
+
+    img {
+        height: 20px;
+    }
+}
+
+.lesson {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+
+.lessonTop {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+        color: $borderColor;
+        font-size: 16px;
+    }
+}
+
+.lessonInfo {
+    h1 {
+        margin: 0;
+    }
+}
+
+.schoolInfo {
+    color: $mainColor;
+
+    img {
+        height: 20px;
+    }
+
+    p {
+        margin: 2px 0;
+    }
+
+    font {
+        color: $borderColor;
+        font-weight: 600;
+    }
+}

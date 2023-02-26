@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Students.module.scss'
 import Popup from 'reactjs-popup'
-import Button from '../../UI/Button'
+import TitleButton from '../../UI/Buttons/TitleButton'
 import CardItem from './StudentsComponents/CardItem'
 import loading from '../../assets/loading2.svg'
 import AddStudent from '../../components/forms/AddStudent'
@@ -30,7 +30,16 @@ const Studetns = () => {
                     <div className={style.buttons}>
                         <Popup
                             position='top center'
-                            trigger={<Button content='Добавить ученика' />}
+                            trigger={
+                                <TitleButton
+                                    content='Добавить ученика'
+                                    icon={
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                        </svg>
+                                    }
+                                />
+                            }
                             modal
                         >
                             {close => (

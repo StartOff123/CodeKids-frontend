@@ -37,9 +37,9 @@
 
     h1 {
         position: relative;
+        padding: 10px;
         color: $mainColor;
-        font-size: 20px;
-        padding-bottom: 10px;   
+        font-size: 20px; 
         margin-bottom: 20px;
 
         &::after {
@@ -74,7 +74,7 @@
     width: 100%;
     background: $white;
     border: 1px solid #DEE7F0;
-    box-shadow: 1px 2px 8px 1px rgba(52, 91, 130, 0.25);
+    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
     border-radius: 8px;
 
     p {
@@ -92,15 +92,10 @@
 }
 
 .buttonss {
+    display: flex;
+    
     button {
         margin-left: 10px;
-
-        &:last-child {
-            &:hover {
-                color: #fff;
-                background: rgba($color: #4d0000, $alpha: .6);
-            }
-        }
     }
 }
 
@@ -129,6 +124,7 @@
         margin: 0;
         padding: 0;
         margin-right: 5px;
+        box-shadow: none;
 
         &::after {
             display: none;

@@ -31,7 +31,7 @@ const Main = () => {
       <div className={style.right}>
         <Header />
         <div className={style.desktop}>
-          <span>Code Kids CRM</span>
+          <span style={isVisib ? {left: '50%'} : {left: '42%'}} >Code Kids CRM</span>
           <Outlet />
         </div>
       </div>

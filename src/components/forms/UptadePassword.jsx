@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import 'react-phone-input-2/lib/style.css'
 import { doNotMatchPassword, fetchUpdatePassword } from '../../redux/slices/password'
 import { theme } from '../../muiTheme/theme'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const UpdatePassword = () => {
     const dispatch = useDispatch()
@@ -71,10 +72,10 @@ const UpdatePassword = () => {
 
                     {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
                     {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
-                    {success && <Alert severity='success'>Пароль успешно изменён:)</Alert>}
+                    {success && <Alert severity='success'>Пароль успешно изменён</Alert>}
+                    <MainButton content='Измеить' />
                 </Stack>
             </ThemeProvider>
-            <button className='form-button'>Изменить</button>
         </form>
     )
 }

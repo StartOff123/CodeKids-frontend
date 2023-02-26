@@ -9,6 +9,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { fetchLessons, fetchUpdateLesson } from '../../redux/slices/lessons'
 import { ThemeProvider } from '@emotion/react'
 import { theme } from '../../muiTheme/theme'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const UpdateLesson = ({ onClose, lesson }) => {
     const dispatch = useDispatch()
@@ -18,12 +19,13 @@ const UpdateLesson = ({ onClose, lesson }) => {
         defaultValues: {
             title: lesson.title,
             theme: lesson.theme,
-            // studentId: 
+            studentId: lesson.student,
             date: moment(lesson.date).format('L LT')
         }
     })
 
     const onSubmit = async (values) => {
+        console.log(values)
         const { date, student, ...value } = values
         const ISOdate = new Date(date).toISOString()
         const params = {
@@ -63,6 +65,7 @@ const UpdateLesson = ({ onClose, lesson }) => {
                                 return (
                                     <Select
                                         error={errors.studentId && true}
+                                        defaultValue={field.value}
                                         size='small'
                                         label='Ученик'
                                         labelId='demo-simple-select-label'
@@ -101,7 +104,7 @@ const UpdateLesson = ({ onClose, lesson }) => {
                         name='date'
                         control={control}
                     />
-                    <button className='form-button'>Изменить</button>
+                    <MainButton content='Изменить'/>
                 </Stack>
             </ThemeProvider>
         </form>

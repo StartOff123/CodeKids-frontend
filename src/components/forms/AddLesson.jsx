@@ -2,22 +2,24 @@ import React from 'react'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { Stack, TextField, Select, MenuItem, InputLabel, FormControl, Alert } from '@mui/material'
 import logo from '../../assets/logo.png'
+import loading from '../../assets/loading2.svg'
 import './forms.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Controller, useForm } from 'react-hook-form'
 import { fetchAddLesson, fetchLessons } from '../../redux/slices/lessons'
 import { theme } from '../../muiTheme/theme'
 import { ThemeProvider } from '@emotion/react'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const AddLesson = ({ onClose }) => {
     const dispatch = useDispatch()
-    const { studentsArr } = useSelector(state => state.students)
+    const { studentsArr, status } = useSelector(state => state.students)
+    const isStudentsLoading = status === 'loading'
     const { data } = useSelector(state => state.auth)
-    const [date, setDate] = React.useState(null)
 
     const { register, handleSubmit, control, formState: { errors } } = useForm({
         defaultValues: {
-            date: date,
+            date: null,
         }
     })
 
@@ -49,60 +51,62 @@ const AddLesson = ({ onClose }) => {
                     <p>Добавление урока</p>
                 </div>
             </div>
-            <ThemeProvider theme={theme}>
-                <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
-                    <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: true })} />
-                    <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />
-                    <FormControl className='form-studetn'>
-                        <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>
+            {isStudentsLoading ? <img src={loading} alt='loading' /> :
+                <ThemeProvider theme={theme}>
+                    <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
+                        <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: true })} />
+                        <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />
+                        <FormControl className='form-studetn'>
+                            <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>
+                            <Controller
+                                render={({ field }) => {
+                                    return (
+                                        <Select
+                                            error={errors.studentId && true}
+                                            size='small'
+                                            label='Ученик'
+                                            labelId='demo-simple-select-label'
+                                            inputProps={{
+                                                name: 'studentId'
+                                            }}
+                                            onChange={value => field.onChange(value.target.value)}
+                                        >
+                                            {studentsArr.map((option) =>
+                                                <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
+                                            )}
+                                        </Select>
+                                    )
+                                }}
+                                rules={{
+                                    required: true
+                                }}
+                                name='studentId'
+                                control={control}
+                            />
+                        </FormControl>
                         <Controller
                             render={({ field }) => {
                                 return (
-                                    <Select
-                                        error={errors.studentId && true}
-                                        size='small'
-                                        label='Ученик'
-                                        labelId='demo-simple-select-label'
-                                        inputProps={{
-                                            name: 'studentId'
-                                        }}
-                                        onChange={value => field.onChange(value.target.value)}
-                                    >
-                                        {studentsArr.map((option) =>
-                                            <MenuItem key={option._id} value={option._id}>{option.name} {option.surname}</MenuItem>
-                                        )}
-                                    </Select>
+                                    <DateTimePicker
+                                        label='Дата и время урока'
+                                        renderInput={params => <TextField size='small' {...params} error={errors.date && true} {...register('date', { required: true })} />}
+                                        value={field.value}
+                                        onChange={value => field.onChange(value)}
+                                    />
                                 )
                             }}
                             rules={{
                                 required: true
                             }}
-                            name='studentId'
+                            name='date'
                             control={control}
                         />
-                    </FormControl>
-                    <Controller
-                        render={({ field }) => {
-                            return (
-                                <DateTimePicker
-                                    label='Дата и время урока'
-                                    renderInput={params => <TextField size='small' {...params} error={errors.date && true} {...register('date', { required: true })} />}
-                                    value={field.value}
-                                    onChange={value => field.onChange(value)}
-                                />
-                            )
-                        }}
-                        rules={{
-                            required: true
-                        }}
-                        name='date'
-                        control={control}
-                    />
 
-                    {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
-                    <button className='form-button'>Запланировать</button>
-                </Stack>
-            </ThemeProvider>
+                        {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
+                        <MainButton content='Запланировать' />
+                    </Stack>
+                </ThemeProvider>
+            }
         </form>
     )
 }

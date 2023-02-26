@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { Stack, TextField, TextareaAutosize, Alert, ThemeProvider } from '@mui/material'
+import { Stack, TextField, Alert, ThemeProvider } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { fetchAddRemider, fetchRemider } from '../../redux/slices/remiders'
 import { theme } from '../../muiTheme/theme'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const AddRemider = ({ onClose }) => {
     const dispatch = useDispatch()
@@ -35,7 +36,7 @@ const AddRemider = ({ onClose }) => {
                 <img src={logo} alt="" />
                 <div className='form-logo-title'>
                     <h2>Code Kids</h2>
-                    <p>Добавление заметки</p>
+                    <p>Создание заметки</p>
                 </div>
             </div>
             <ThemeProvider theme={theme}>
@@ -43,7 +44,7 @@ const AddRemider = ({ onClose }) => {
                     <TextField label='Название заметки' error={errors.title && true} size='small' {...register('title', { required: 'Все красные поля должны быть заполнены' })} />
                     <TextField label='Текст заметки' multiline maxRows={Infinity} size='small' {...register('content')} />
                     {errors.title && <Alert severity='error'>{errors.title?.message}</Alert>}
-                    <button type='submit' className='form-button'>Добавить</button>
+                    <MainButton content='Cоздать' />
                 </Stack>
             </ThemeProvider>
         </form>

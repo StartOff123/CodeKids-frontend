@@ -7,6 +7,7 @@ import { fetchRegister, fetchTeacher, doNotMatchPassword } from '../../redux/sli
 import { Stack, TextField, Alert, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, ThemeProvider } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { theme } from '../../muiTheme/theme'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const RegisterForm = ({ onClose }) => {
     const dispatch = useDispatch()
@@ -80,7 +81,7 @@ const RegisterForm = ({ onClose }) => {
                     </Stack>
                     {Object.keys(errors).length !== 0 && <Alert severity='error'>Все поля должны быть заполнены</Alert>}
                     {Object.keys(errors).length === 0 && error && <Alert severity='error'>{error.message}</Alert>}
-                    <button className='form-button'>Зарегистрировать</button>
+                    <MainButton content='Зарегестрировать'/>
                 </Stack>
             </ThemeProvider>
 

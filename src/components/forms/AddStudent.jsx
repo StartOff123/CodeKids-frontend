@@ -9,6 +9,7 @@ import "react-phone-input-2/lib/material.css"
 import { fetchAddStudent, fetchStudents } from '../../redux/slices/students'
 import { theme } from '../../muiTheme/theme'
 import { ThemeProvider } from '@emotion/react'
+import MainButton from '../../UI/Buttons/MainButton'
 
 const AddStudent = ({ onClose }) => {
   const dispatch = useDispatch()
@@ -68,7 +69,7 @@ const AddStudent = ({ onClose }) => {
             }}
           />
           {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
-          <button className='form-button'>Добавить</button>
+          <MainButton content='Добавить'/>
         </Stack>
       </ThemeProvider>
     </form>

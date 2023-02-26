@@ -1,0 +1,119 @@
+@import '../../styles/colors.scss';
+
+.titleButton {
+    display: flex;
+    align-items: center;
+    outline: none;
+    background: $white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 11px;
+    font-weight: 600;
+    font-size: 16px;
+    color: $mainColor;
+    cursor: pointer;
+    transition: all .15s;
+    margin-left: 10px;
+    box-shadow: 0 5px 6px 0px rgba($color: $menuDarkBg, $alpha: .2);
+
+    &:hover {
+        background: $mainColor;
+        color: $white;
+    }
+
+    &:active {
+        background: #547c98;
+    }
+
+    svg {
+        margin-left: 5px;
+    }
+}
+
+.mainButton {
+    position: relative;
+    margin-top: 20px;
+    background: #48A6CB;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: $white;
+    cursor: pointer;
+    margin-left: 0;
+    transition: all .2s;
+
+    &:hover {
+        background: #319fca;
+    }
+
+    &:active {
+        background: #2b90b8;
+    }
+
+    svg {
+        margin-left: 5px;
+    }
+}
+
+.removeButton {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: #bcbcbc;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 7px 15px;
+    font-weight: 700;
+    font-size: 14px;
+    color: $white;
+    cursor: pointer;
+    margin-left: 0;
+    transition: all .2s;
+
+    svg {
+        margin-left: 5px;
+    }
+
+    &:hover {
+        background: rgb(135, 45, 45);
+    }
+
+    &:active {
+        background: rgb(104, 35, 35);
+    }
+}
+
+.contextButton {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid $mainColor;
+    outline: none;
+    padding: 7px 15px;
+    font-weight: 700;
+    font-size: 14px;
+    color: $mainColor;
+    cursor: pointer;
+    margin-left: 0;
+    transition: all .2s;
+
+    svg {
+        margin-left: 5px;
+    }
+
+    &:hover {
+        background: $mainColor;
+        color: $white;
+    }
+
+    &:active {
+        background: #2b90b8;
+    }
+}
