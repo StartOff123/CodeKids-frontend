@@ -6,11 +6,12 @@ import loading from '../../../assets/loading2.svg'
 const SchoolStatistics = () => {
     const { teachersArr } = useSelector(state => state.teachers)
     const { studentsArr } = useSelector(state => state.students)
-    const { allLessonsArr } = useSelector(state => state.lessons)
+    const { allLessonsArr } = useSelector(state => state.allLessons)
 
     const heldLessons = allLessonsArr && allLessonsArr.filter(lesson => lesson.status === 'held')
+    console.log(heldLessons)
 
-    const isLessonsLoading = useSelector(state => state.lessons.allLessonsStatus) === 'loading'
+    const isLessonsLoading = useSelector(state => state.allLessons.status) === 'loading'
     const isStudentsLoading = useSelector(state => state.students.status) === 'loading'
     const isTeachersLoading = useSelector(state => state.teachers.status) === 'loading'
 

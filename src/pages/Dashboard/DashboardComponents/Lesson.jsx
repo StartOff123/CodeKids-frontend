@@ -1,6 +1,7 @@
 import React from 'react'
 import style from '../Dashboard.module.scss'
 import moment from 'moment'
+import loading from '../../../assets/loading2.svg'
 import { useSelector } from 'react-redux'
 
 const Lesson = ({ lesson }) => {
@@ -16,7 +17,7 @@ const Lesson = ({ lesson }) => {
             <div className={style.lessonInfo}>
                 <h1>{lesson.theme}</h1>
                 <h1>Ученик: {
-                    isStudentsLoading ? '' :
+                    isStudentsLoading ? <img src={loading} alt="loading" /> :
                         studentsArr.filter(student => student._id === lesson.student)[0].name + ' ' + studentsArr.filter(student => student._id === lesson.student)[0].surname}
                 </h1>
             </div>

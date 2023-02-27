@@ -4,16 +4,18 @@ import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch } from 'react-redux'
 import { Controller, useForm } from 'react-hook-form'
-import PhoneInput from 'react-phone-input-2'
 import "react-phone-input-2/lib/material.css"
 import { fetchUpdateStudent, fetchStudents } from '../../redux/slices/students'
 import parsePhoneNumber from 'libphonenumber-js'
 import { ThemeProvider } from '@emotion/react'
-import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+import { MuiTelInput } from 'mui-tel-input'
 
 const UpdateStudent = ({ onClose, student }) => {
   const dispatch = useDispatch()
+  const { theme } = useTheme()
   const phoneNumber = parsePhoneNumber(String(student.phone), 'RU').format('E.164')
 
   const { register, handleSubmit, control, formState: { errors } } = useForm({
@@ -25,7 +27,13 @@ const UpdateStudent = ({ onClose, student }) => {
   })
 
   const onSubmit = async (values) => {
-    await dispatch(fetchUpdateStudent({ id: student._id, ...values }))
+    const { phone, ...value } = values
+    const phoneNumber = parsePhoneNumber(phone)
+    await dispatch(fetchUpdateStudent({
+      id: student._id,
+      phone: 7 + phoneNumber.nationalNumber,
+      ...value
+    }))
     await dispatch(fetchStudents())
     onClose()
   }
@@ -45,7 +53,7 @@ const UpdateStudent = ({ onClose, student }) => {
           <p>Редактирование</p>
         </div>
       </div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
         <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
           <div className='form-name'>
             <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
@@ -58,19 +66,17 @@ const UpdateStudent = ({ onClose, student }) => {
             defaultValue=''
             render={({ field }) => {
               return (
-                <PhoneInput
+                <MuiTelInput
                   {...field}
+                  label="Номер телефона"
+                  error={errors.phone && true}
                   inputProps={{
                     name: 'phone',
                     required: true,
                   }}
-                  placeholder='+7 (999) 999-99-99'
-                  inputStyle={{ width: '100%' }}
-                  specialLabel={false}
-                  onlyCountries={['ru']}
-                  countryCodeEditable={false}
-                  isValid={errors.phone && false}
-                  country='ru'
+                  size='small'
+                  defaultCountry='RU'
+                  onlyCountries={['RU']}
                   onChange={value => field.onChange(value)}
                 />
               );

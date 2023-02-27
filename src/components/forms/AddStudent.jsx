@@ -4,20 +4,27 @@ import logo from '../../assets/logo.png'
 import './forms.scss'
 import { useDispatch } from 'react-redux'
 import { Controller, useForm } from 'react-hook-form'
-import PhoneInput from 'react-phone-input-2'
-import "react-phone-input-2/lib/material.css"
+import parsePhoneNumber from 'libphonenumber-js'
 import { fetchAddStudent, fetchStudents } from '../../redux/slices/students'
-import { theme } from '../../muiTheme/theme'
 import { ThemeProvider } from '@emotion/react'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+import { MuiTelInput } from 'mui-tel-input'
 
 const AddStudent = ({ onClose }) => {
   const dispatch = useDispatch()
 
+  const { theme } = useTheme()
   const { register, handleSubmit, control, formState: { errors } } = useForm()
 
   const onSubmit = async (values) => {
-    await dispatch(fetchAddStudent(values))
+    const { phone, ...value } = values
+    const phoneNumber = parsePhoneNumber(phone)
+    await dispatch(fetchAddStudent({
+      phone: 7 + phoneNumber.nationalNumber,
+      ...value
+    }))
     await dispatch(fetchStudents())
     onClose()
   }
@@ -37,12 +44,13 @@ const AddStudent = ({ onClose }) => {
           <p>Добавление ученика</p>
         </div>
       </div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
         <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
           <div className='form-name'>
             <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />
             <TextField error={errors.surname && true} size='small' label='Фамилия' {...register('surname', { required: true })} />
           </div>
+
           <Controller
             name='phone'
             control={control}
@@ -50,26 +58,24 @@ const AddStudent = ({ onClose }) => {
             defaultValue=""
             render={({ field }) => {
               return (
-                <PhoneInput
+                <MuiTelInput
                   {...field}
+                  label="Номер телефона"
+                  error={errors.phone && true}
                   inputProps={{
                     name: 'phone',
                     required: true,
                   }}
-                  placeholder='+7 (999) 999-99-99'
-                  inputStyle={{ width: '100%' }}
-                  specialLabel={false}
-                  onlyCountries={['ru']}
-                  countryCodeEditable={false}
-                  isValid={errors.phone && false}
-                  country='ru'
+                  size='small'
+                  defaultCountry='RU'
+                  onlyCountries={['RU']}
                   onChange={value => field.onChange(value)}
                 />
               )
             }}
           />
           {Object.keys(errors).length !== 0 && <Alert severity='error'>Все красные поля должны быть заполнены</Alert>}
-          <MainButton content='Добавить'/>
+          <MainButton content='Добавить' />
         </Stack>
       </ThemeProvider>
     </form>

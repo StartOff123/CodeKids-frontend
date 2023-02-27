@@ -16,8 +16,6 @@ const Reports = () => {
     const isReportLoading = status === 'loading'
 
     React.useEffect(() => {
-        dispatch(fetchTeacher())
-        dispatch(fetchStudents())
         dispatch(fetchReport())
     }, [])
 

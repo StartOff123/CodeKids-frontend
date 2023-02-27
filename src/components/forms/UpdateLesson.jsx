@@ -10,10 +10,14 @@ import { fetchLessons, fetchUpdateLesson } from '../../redux/slices/lessons'
 import { ThemeProvider } from '@emotion/react'
 import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+
 
 const UpdateLesson = ({ onClose, lesson }) => {
     const dispatch = useDispatch()
     const { studentsArr } = useSelector(state => state.students)
+    const { theme } = useTheme()
 
     const { register, handleSubmit, control, formState: { errors } } = useForm({
         defaultValues: {
@@ -54,7 +58,7 @@ const UpdateLesson = ({ onClose, lesson }) => {
                     <p>Редактирование</p>
                 </div>
             </div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                 <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
                     <TextField error={errors.title && true} size='small' label='Название' {...register('title', { required: 'Все поля должны быть заполнены' })} />
                     <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />

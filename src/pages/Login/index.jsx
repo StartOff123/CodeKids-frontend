@@ -9,9 +9,13 @@ import logo from '../../assets/logo.png'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+
 
 const Login = () => {
     const isAuth = useSelector(selectIsAuth)
+    const { theme } = useTheme()
     const { error } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
@@ -45,7 +49,7 @@ const Login = () => {
                         <p>Авторизация</p>
                     </div>
                 </div>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                     <Stack spacing={2} style={{ width: 260 }} className={style.input}>
                         <div className={style.log}>
                             <TextField style={{ width: '100%' }} error={errors.login && true} size='small' label='Логин' {...register('login', { required: true })} />

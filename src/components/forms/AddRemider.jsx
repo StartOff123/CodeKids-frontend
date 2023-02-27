@@ -5,11 +5,13 @@ import { Stack, TextField, Alert, ThemeProvider } from '@mui/material'
 import logo from '../../assets/logo.png'
 import './forms.scss'
 import { fetchAddRemider, fetchRemider } from '../../redux/slices/remiders'
-import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
 
 const AddRemider = ({ onClose }) => {
     const dispatch = useDispatch()
+    const { theme } = useTheme()
     const { data } = useSelector(state => state.auth)
     const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm()
 
@@ -39,7 +41,7 @@ const AddRemider = ({ onClose }) => {
                     <p>Создание заметки</p>
                 </div>
             </div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                 <Stack spacing={2} sx={{ width: 350 }} className='form-input'>
                     <TextField label='Название заметки' error={errors.title && true} size='small' {...register('title', { required: 'Все красные поля должны быть заполнены' })} />
                     <TextField label='Текст заметки' multiline maxRows={Infinity} size='small' {...register('content')} />

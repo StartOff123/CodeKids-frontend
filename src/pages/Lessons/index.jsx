@@ -12,8 +12,10 @@ const Lessons = () => {
     document.title = 'CodeKids | Уроки'
     const dispatch = useDispatch()
     const { lessonsArr, status } = useSelector(state => state.lessons)
+
     const comingLessons = lessonsArr && lessonsArr.filter(lesson => lesson.status === 'coming')
     const heldLessons = lessonsArr && lessonsArr.filter(lesson => lesson.status === 'held')
+
     const isLessonsLoading = status === 'loading'
 
     React.useEffect(() => {

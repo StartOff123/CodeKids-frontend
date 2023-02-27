@@ -6,11 +6,14 @@ import { useForm } from 'react-hook-form'
 import { fetchRegister, fetchTeacher, doNotMatchPassword } from '../../redux/slices/teachers'
 import { Stack, TextField, Alert, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, ThemeProvider } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+
 
 const RegisterForm = ({ onClose }) => {
     const dispatch = useDispatch()
+    const { theme } = useTheme()
     const { error } = useSelector(state => state.teachers)
 
     const [showPassword, setShowPassword] = React.useState(false)
@@ -45,7 +48,7 @@ const RegisterForm = ({ onClose }) => {
                     <p>Регистрация учителя</p>
                 </div>
             </div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                 <Stack spacing={2} sx={{ maxWidth: 350 }} className='form-input'>
                     <div className='form-name'>
                         <TextField error={errors.name && true} size='small' label='Имя' {...register('name', { required: true })} />

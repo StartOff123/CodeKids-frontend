@@ -9,10 +9,14 @@ import 'react-phone-input-2/lib/style.css'
 import { doNotMatchPassword, fetchUpdatePassword } from '../../redux/slices/password'
 import { theme } from '../../muiTheme/theme'
 import MainButton from '../../UI/Buttons/MainButton'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
+
 
 const UpdatePassword = () => {
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.auth)
+    const { theme } = useTheme()
     const { error, success } = useSelector(state => state.password)
 
     const [showOldPassword, setShowOldPassword] = React.useState(false)
@@ -42,7 +46,7 @@ const UpdatePassword = () => {
                     <p>Изменение пароля</p>
                 </div>
             </div>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                 <Stack spacing={2} sx={{ width: 250 }} className='form-input'>
                     <FormControl>
                         <InputLabel error={errors.oldPassword && true} size='small'>Старый пароль</InputLabel>

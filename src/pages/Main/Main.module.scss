@@ -25,7 +25,7 @@
         font-weight: 700;
         font-size: 50px;
         line-height: 115px;
-        color: rgba($color: #39679433, $alpha: .2);
+        color: var(--span-color);
         z-index: -1;
         transition: all .4s;
     }

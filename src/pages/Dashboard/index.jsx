@@ -6,7 +6,7 @@ import ComingLessons from './DashboardComponents/ComingLessons'
 import { fetchStudents } from '../../redux/slices/students'
 import SchoolStatistics from './DashboardComponents/SchoolStatistics'
 import { fetchTeacher } from '../../redux/slices/teachers'
-import { fetchAllLessons } from '../../redux/slices/lessons'
+import { fetchAllLessons } from '../../redux/slices/allLessons'
 
 const Dashboard = () => {
     document.title = 'CodeKids | Панель управления'

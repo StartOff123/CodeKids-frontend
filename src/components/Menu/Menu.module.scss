@@ -37,7 +37,7 @@
     color: var(--text-color-1);
     border-width: 1px 0px;
     border-style: solid;
-    border-color: var(--border-color);
+    border-color: var(--border-menu-color);
     transition: all .2s;
 
     h1 {
@@ -49,6 +49,7 @@
 
 .menuItem {
     background: var(--menu-dark-background);
+    transition: all .2s;
 }
 
 .item {

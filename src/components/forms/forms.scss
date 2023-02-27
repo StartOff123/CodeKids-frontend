@@ -3,8 +3,8 @@
 .form {
     box-sizing: border-box;
     padding: 15px 20px;
-    background: var(--white);
-    border: 1px solid #DEE7F0;
+    background: var(--block-color);
+    border: 1px solid var(--border-color);
     box-shadow: 0 5px 6px 0px var(--shadow);
     border-radius: 8px;
 }
@@ -18,7 +18,7 @@
         transition: all .15s;
 
         &:hover {
-            color: rgb(159, 0, 0);
+            color: var(--red-color);
         }
     }
 }
@@ -46,7 +46,7 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background: var(--logo-color);
+        background: var(--form-border-color);
     }
 }
 
@@ -59,7 +59,7 @@
     }
 
     p {
-        color: var(--main-color);
+        color: var(--context-color);
         font-weight: 700;
         font-size: 16px;
     }
@@ -67,7 +67,7 @@
 
 .form-button {
     margin-top: 20px;
-    background: #48A6CB;
+    background: var(--button-color-1);
     border-radius: 10px;
     border: none;
     outline: none;
@@ -75,17 +75,17 @@
     padding: 10px 20px;
     font-weight: 700;
     font-size: 16px;
-    color: var(--white);
+    color: var(--text-color-1);
     cursor: pointer;
     margin-left: 0;
     transition: all .15s;
 
     &:hover {
-        background: #319fca;
+        background: var(--button-color-2);
     }
 
     &:active {
-        background: #2b90b8;
+        background: var(--button-color-3);
     }
 }
 
@@ -189,7 +189,7 @@
 }
 
 .confirmationText {
-    color: var(--main-color);
+    color: var(--text-color-2);
     font-size: 18px;
 }
 
@@ -220,23 +220,22 @@
         &:last-child {
             margin-top: 0;
             width: auto;
-            background: #FBFCFC;
-            border: 1px solid #DEE7F0;
+            background: var(--button-color-1);
             border-radius: 8px;
             padding: 8px 11px;
             font-weight: 700;
             font-size: 16px;
-            color: var(--main-color);
+            color: var(--text-color-1);
             cursor: pointer;
             transition: all .15s;
             margin-left: 10px;
 
             &:hover {
-                background: #fafafa;
+                background: var(--button-color-2);
             }
 
             &:active {
-                background: #ececec;
+                background: var(--button-color-3);
             }
         }
     }

@@ -27,15 +27,8 @@ export const fetchCouductLesson = createAsyncThunk('lesson/fetchCouductLesson', 
     return data
 })
 
-export const fetchAllLessons = createAsyncThunk('lesson/fetchAllLessons', async () => {
-    const { data } = await axios.get('/lessons')
-    return data
-})
-
 const initialState = {
     lessonsArr: null,
-    allLessonsArr: null,
-    allLessonsStatus: 'loading',
     status: 'loading',
 }
 
@@ -109,18 +102,6 @@ const lessonsSlice = createSlice({
             .addCase(fetchCouductLesson.rejected, state => {
                 state.lessonsArr = null
                 state.status = 'error'
-            })
-            .addCase(fetchAllLessons.pending, state => {
-                state.allLessonsArr = null
-                state.allLessonsStatus = 'loading'
-            })
-            .addCase(fetchAllLessons.fulfilled, (state, action) => {
-                state.allLessonsArr = action.payload
-                state.allLessonsStatus = 'loaded'
-            })
-            .addCase(fetchAllLessons.rejected, state => {
-                state.allLessonsArr = null
-                state.allLessonsStatus = 'error'
             })
     }
 })

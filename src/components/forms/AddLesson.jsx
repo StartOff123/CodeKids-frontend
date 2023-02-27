@@ -7,12 +7,14 @@ import './forms.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Controller, useForm } from 'react-hook-form'
 import { fetchAddLesson, fetchLessons } from '../../redux/slices/lessons'
-import { theme } from '../../muiTheme/theme'
+import { dackTheme, lightTheme } from '../../muiTheme/theme'
+import { useTheme } from '../../Theme/useTheme'
 import { ThemeProvider } from '@emotion/react'
 import MainButton from '../../UI/Buttons/MainButton'
 
 const AddLesson = ({ onClose }) => {
     const dispatch = useDispatch()
+    const { theme } = useTheme()
     const { studentsArr, status } = useSelector(state => state.students)
     const isStudentsLoading = status === 'loading'
     const { data } = useSelector(state => state.auth)
@@ -52,7 +54,7 @@ const AddLesson = ({ onClose }) => {
                 </div>
             </div>
             {isStudentsLoading ? <img src={loading} alt='loading' /> :
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                     <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
                         <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: true })} />
                         <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />

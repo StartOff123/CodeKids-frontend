@@ -83,6 +83,7 @@
         }
 
         &::before {
+            transition: all .2s;
             position: absolute;
             content: '';
             bottom: 5px;
@@ -103,6 +104,7 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
+    transition: all .4s;
 
     svg {
         path {
@@ -159,6 +161,10 @@
     overflow: hidden;
     border-radius: 50%;
     margin-left: 10px;
+
+    svg {
+        color: var(--text-color-2);
+    }
 }
 
 .headerBtn {
@@ -179,7 +185,7 @@
         background: var(--main-color);
 
         svg {
-            color: var(--white);
+            color: var(--text-color-1);
         }
     }
 
