@@ -58,7 +58,7 @@ const Lessons = () => {
                                 <Lesson key={lesson._id} lessons={lesson} isCarriedOut={false} />
                             )
                         : <div style={{ width: '100%', textAlign: 'center' }}>
-                            <img className={style.load} src={loading} alt="" />
+                            <img src={loading} alt="loading" style={{ height: 120}}/>
                         </div>
                     }
                 </div>
@@ -71,7 +71,7 @@ const Lessons = () => {
                                 <Lesson key={lesson._id} lessons={lesson} isCarriedOut={true} />
                             )
                         : <div style={{ width: '100%', textAlign: 'center' }}>
-                            <img className={style.load} src={loading} alt="" />
+                            <img src={loading} alt="loading" style={{ height: 120}}/>
                         </div>
                     }
                 </div>

@@ -10,7 +10,7 @@ const Сonfirmation = ({ title, object, btnContent, action, onClose }) => {
   } 
 
   return (
-    <form onSubmit={onSubmit} className='form' style={{ maxWidth: 400 }}>
+    <form onSubmit={onSubmit} className='form' style={{ maxWidth: 400, minWidth: 300 }}>
       <div className='confirmationText'>
         <p>{title}</p>
       </div>
