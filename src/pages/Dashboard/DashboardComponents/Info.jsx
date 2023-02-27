@@ -37,12 +37,8 @@ const Info = ({ data }) => {
         </div>
       </div>
       <div className={style.infoStatistics}>
-        {isLessonsLoading ? <img src={loading} alt="loading" /> :
-          <>
-            <p>Запланированно уроков: <font>{comingLessons.length}</font></p>
-            <p>Проведено уроков: <font>{heldLessons.length}</font></p>
-          </>
-        }
+        <p>Запланированно уроков: {isLessonsLoading ? <img src={loading} alt="loading" /> : <font> {comingLessons.length}</font>}</p>
+        <p>Проведено уроков: {isLessonsLoading ? <img src={loading} alt="loading" /> : <font> {heldLessons.length}</font>}</p>
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ const ComingLessons = () => {
         <div className={style.component}>
             <h1>Запланированные уроки</h1>
             <div className={style.lessonsContent}>
-                {isLessonsLoading ? <img src={loading} alt="loading" /> :
+                {isLessonsLoading ? <img src={loading} alt="loading" style={{ width: '100%', height: 100 }} /> :
                     comingLessons.length === 0 ? <p>Нет запланированных уроков</p> :
                         comingLessons.slice().reverse().map((lesson) =>
                             <Lesson key={lesson._id} lesson={lesson} />
