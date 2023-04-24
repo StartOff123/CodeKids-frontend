@@ -15,7 +15,7 @@ const Menu = () => {
     const { isVisib } = useSelector(state => state.visib)
     const { theme, setTheme } = useTheme()
     const itemMenu = [
-        { title: 'Панель управления', img: dashboard, path: 'dashboard' },
+        // { title: 'Панель управления', img: dashboard, path: 'dashboard' },
         { title: 'Учителя', img: teacher, path: 'teachers' },
         { title: 'Ученики', img: student, path: 'students' },
         { title: 'Уроки', img: lesson, path: 'lessons' },

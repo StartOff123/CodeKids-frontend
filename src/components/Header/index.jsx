@@ -48,7 +48,7 @@ const Header = () => {
                             </svg>
                         }
                     </div>
-                    <p>{data.status === 'defaultTeacher' ? 'Учитель' : 'Учитель-администратор'}</p>
+                    <p>{data.status === 'defaultTeacher' ? 'Учитель' : 'Директор'}</p>
                 </div>
                 <div className={style.bottons}>
                     <div className={style.avatar}>

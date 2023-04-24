@@ -92,7 +92,7 @@ const CardItem = ({ teacher }) => {
           </div>
           <div className={style.infoInner}>
             <h2>{teacher.name} {teacher.surname} {data._id === teacher._id && '(Вы)'}</h2>
-            <p>Статус: {teacher.status === 'defaultTeacher' ? 'Учитель' : 'Учитель-администратор'}</p>
+            <p>Статус: {teacher.status === 'defaultTeacher' ? 'Учитель' : 'Директор'}</p>
             <p>Дата регистрации: {moment(teacher.createdAt).format('DD.MM.YYYY')}</p>
           </div>
         </div>

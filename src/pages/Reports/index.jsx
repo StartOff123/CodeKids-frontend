@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './Reports.module.scss'
 import TitleButton from '../../UI/Buttons/TitleButton'
+import { Outlet, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRemoveAllReport, fetchReport } from '../../redux/slices/report'
 import { fetchStudents } from '../../redux/slices/students'
@@ -15,12 +16,9 @@ const Reports = () => {
     const isReportLoading = status === 'loading'
 
     React.useEffect(() => {
-        dispatch(fetchReport())
-    }, [])
-
-    const onAllRemove = () => {
-        dispatch(fetchRemoveAllReport())
-    }
+        dispatch(fetchStudents())
+        dispatch(fetchTeacher())
+    })
 
     return (
         <div className={style.reports}>
@@ -30,12 +28,16 @@ const Reports = () => {
                     <p>Отчёты</p>
                 </div>
                 <div className={style.buttons}>
-                    <TitleButton content='Сформировать ежемесячный отчет' />
-                    <TitleButton content='Сформировать отчет эффективности' />
+                    <Link to='monthly_report'>
+                        <TitleButton content='Ежемесячный отчет' />
+                    </Link>
+                    <Link to='performance_report'>
+                        <TitleButton content='Отчет эффективности' />
+                    </Link>
                 </div>
             </div>
             <div className={style.reportsContent}>
-                
+                <Outlet />
             </div>
         </div>
     )

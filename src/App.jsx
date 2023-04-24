@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchAuthMe, notAuth } from "./redux/slices/auth"
 import Loading from "./pages/Loading"
 import { useTheme } from "./Theme/useTheme"
+import Monthy from './pages/Reports/ReportsComponents/Monthy'
 
 const App = () => {
   const { theme, setTheme } = useTheme()
@@ -38,7 +39,11 @@ const App = () => {
               <Route path="teachers" element={<Teachers />} />
               <Route path="students" element={<Studetns />} />
               <Route path="lessons" element={<Lessons />} />
-              <Route path="reports" element={<Reports />} />
+              <Route path="reports" element={<Reports />}>
+                <Route path="" element={<h2>Выберите вариант отчета для формирования</h2>}/>
+                <Route path="monthly_report" element={<Monthy />}/>
+                <Route path="performance_report" element={<h1>rqwerwqerwq</h1>}/>
+              </Route>
               <Route path="dashboard" element={<Dashboard />} />
             </Route>
             <Route path="/login" element={<Login />} />
