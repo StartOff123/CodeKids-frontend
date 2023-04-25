@@ -1,4 +1,4 @@
-.monthy {
+.monthy {   
     &__header {
         width: 100%;
         padding-bottom: 20px;
@@ -7,11 +7,11 @@
         form {
             display: flex;
             align-items: center;
+            justify-content: space-between;
 
             button {
                 margin-top: 0;
                 margin-left: 20px;
-                margin-right: 20px;
                 display: flex;
                 width: auto;
             }
@@ -29,24 +29,72 @@
             margin-bottom: 20px;
         }
 
+        &--pertabel {
+            // width: 400px;
+            background: var(--block-color);
+            padding: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 6px 0px var(--shadow);
+            transition: all .2s;
+            margin: 0 auto;
+
+            thead {
+                th {
+                    padding: 0 10px;
+                    text-align: left;
+                    font-size: 18px;
+                    color: var(--text-color-2);
+                }
+            }
+
+            tr {
+                padding-top: 10px;
+                color: var(--context-color);
+
+                td {
+                    text-align: center;
+                    padding: 0 10px;
+                }
+            }
+
+            tfoot {
+                td {
+                    text-align: left;
+                    padding: 0 10px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: var(--text-color-2);
+
+                    &:last-child {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        &--loading {
+            width: 100%;
+            text-align: center;
+        }
+
         &--poyasn {
             overflow: hidden;
             text-align: center;
-            padding: 15px 20px;
+            padding: 30px 20px;
             margin-bottom: 20px;
             box-sizing: border-box;
             width: 100%;
-            background: var(--block-color);
-            border: 1px solid var(--border-color);
+            background: var(--report-color);
+            // border: 1px solid var(--border-color);
             box-shadow: 0 5px 6px 0px var(--shadow);
             border-radius: 8px;
             transition: all 0.2s;
 
             p {
                 font-weight: 400;
-                font-size: 18px;
+                font-size: 20px;
                 line-height: 29px;
-                color: var(--context-color);
+                color: var(--report-color1);
             }
         }
 
@@ -81,4 +129,8 @@
             }
         }
     }
+}
+
+.center {
+    width: 100%;
 }

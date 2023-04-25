@@ -60,7 +60,7 @@ const UpdateLesson = ({ onClose, lesson }) => {
             </div>
             <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                 <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
-                    <TextField error={errors.title && true} size='small' label='Название' {...register('title', { required: 'Все поля должны быть заполнены' })} />
+                    <TextField error={errors.title && true} size='small' label='Тема' {...register('title', { required: 'Все поля должны быть заполнены' })} />
                     <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />
                     <FormControl className='form-studetn'>
                         <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>

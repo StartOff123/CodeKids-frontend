@@ -56,7 +56,7 @@ const AddLesson = ({ onClose }) => {
             {isStudentsLoading ? <img src={loading} alt='loading' /> :
                 <ThemeProvider theme={theme === 'light' ? lightTheme : dackTheme}>
                     <Stack spacing={2} sx={{ width: 400 }} className='form-input'>
-                        <TextField error={errors.title && true} size='small' label='Название' type="text" {...register('title', { required: true })} />
+                        <TextField error={errors.title && true} size='small' label='Тема' type="text" {...register('title', { required: true })} />
                         <TextField multiline maxRows={Infinity} size='small' label='Описание урока' {...register('theme')} />
                         <FormControl className='form-studetn'>
                             <InputLabel error={errors.studentId && true} size='small' id="demo-simple-select-label">Ученик</InputLabel>
