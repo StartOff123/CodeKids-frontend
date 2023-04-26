@@ -33,7 +33,7 @@ const Lesson = ({ lessons, isCarriedOut }) => {
                 <h3>{moment(date).format('DD.MM.YYYY HH:mm')}</h3>
             </div>
             <p>{lessons.theme}</p>
-            <h4>Ученик: {lessons.status === 'held' ? lessons.student : isStudentsLoading ? <img src={loading} alt="loading" style={{ height: 20 }} /> : studentsArr.filter(student => student._id === lessons.student)[0].name + ' ' + studentsArr.filter(student => student._id === lessons.student)[0].surname}</h4>
+            <h4>Ученик: {isStudentsLoading ? <img src={loading} alt="loading" style={{ height: 20 }} /> : studentsArr.filter(student => student._id === lessons.student)[0].name + ' ' + studentsArr.filter(student => student._id === lessons.student)[0].surname}</h4>
             {!isCarriedOut ?
                 <div className={style.buttonss}>
                     <ContextButton
